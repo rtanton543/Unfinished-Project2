@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddnlv5ux5raqb"]
+
+[ext_resource type="Texture2D" uid="uid://dlgek76d0ra1d" path="res://Sprites/Pillar.png" id="1_wqxx4"]
+[ext_resource type="Script" path="res://Scripts/Pillar.gd" id="1_y8e3s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5m2xm"]
+size = Vector2(32, 64)
+
+[node name="Pillar" type="Node2D"]
+script = ExtResource("1_y8e3s")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(4, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("1_wqxx4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-5, 0)
+shape = SubResource("RectangleShape2D_5m2xm")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

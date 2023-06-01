@@ -1,0 +1,14 @@
+ParallaxLayer
+ParallaxBackground
+Sprite2D
+ColorRect
+CanvasLayer
+CollisionShape2D
+StaticBody2D
+AnimationPlayer
+TileMap
+Area2D
+AnimationTree
+Camera2D
+CharacterBody2D
+AnimatedSprite2D

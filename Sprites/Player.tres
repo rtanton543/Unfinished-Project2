@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://vmry8537bhnf"]
+
+[ext_resource type="Texture2D" uid="uid://dmtkkdwk1xm3" path="res://Sprites/Test_Man.png" id="1_6rgnw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v43ur"]
+atlas = ExtResource("1_6rgnw")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v43ur")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]

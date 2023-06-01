@@ -1,0 +1,13 @@
+res://default_env.tres
+res://Scenes/Main.tscn
+res://Sprites/BasicBricks.tres
+res://Objects/WarriorWoman/WarriorPlayer.tscn
+res://Objects/Pillar.tscn
+res://Scenes/Lab1.tscn
+res://Scripts/TransitionScript.gd
+res://Effects/color_rect.tscn
+res://Scripts/Pillar.gd
+res://Effects/FadeTransition.tscn
+res://Scripts/Player_Movement.gd
+res://Scripts/Lab1.gd
+res://Scripts/Cliffs.gd
