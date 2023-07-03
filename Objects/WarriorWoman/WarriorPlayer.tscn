@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3dr01lcdy68n"]
+[gd_scene load_steps=53 format=3 uid="uid://b3dr01lcdy68n"]
 
 [ext_resource type="Script" path="res://Scripts/Player_Movement.gd" id="1_nd7wg"]
 [ext_resource type="SpriteFrames" uid="uid://dsxkftj054odj" path="res://Objects/WarriorWoman/Warrior.tres" id="2_nf6yh"]
+[ext_resource type="PackedScene" uid="uid://cuiwl2yky0n7w" path="res://Objects/PlayerUI.tscn" id="3_mlh3f"]
 
 [sub_resource type="Animation" id="Animation_xwshf"]
 resource_name = "Attack"
@@ -29,6 +30,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionAttack:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_g4aml"]
@@ -117,6 +130,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [&"Idle"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionAttack:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ptqoi"]
 resource_name = "Jump"
@@ -147,6 +172,64 @@ tracks/1/keys = {
 "values": [0, 1, 2]
 }
 
+[sub_resource type="Animation" id="Animation_ax503"]
+resource_name = "Ledge grab"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Ledge Grab"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_fboul"]
+resource_name = "Ledge idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"LedgeIdle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
 [sub_resource type="Animation" id="Animation_rrmru"]
 length = 0.001
 tracks/0/type = "value"
@@ -172,6 +255,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"Crouch"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionAttack:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_gbhj5"]
@@ -210,15 +305,152 @@ _data = {
 "Fall": SubResource("Animation_66nj1"),
 "Idle": SubResource("Animation_n2rfs"),
 "Jump": SubResource("Animation_ptqoi"),
+"Ledge grab": SubResource("Animation_ax503"),
+"Ledge idle": SubResource("Animation_fboul"),
 "RESET": SubResource("Animation_rrmru"),
 "Run": SubResource("Animation_gbhj5")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uhk8l"]
-size = Vector2(28.125, 50)
+size = Vector2(25, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3tynl"]
 size = Vector2(31, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rcpp"]
+size = Vector2(21, 55)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6clt5"]
+animation = &"Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v6m0m"]
+animation = &"CrouchIdle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nbrfe"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sccux"]
+animation = &"Jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ipel3"]
+animation = &"Fall"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_iowto"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_sccux")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_ipel3")
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1870i"]
+animation = &"Ledge grab"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h2epb"]
+animation = &"Ledge idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ke4jv"]
+animation = &"Jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eefnr"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_okbpk"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ke4jv")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_eefnr")
+blend_point_1/pos = 0.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b5mhx"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w4am6"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s3esg"]
+animation = &"Fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_so5s2"]
+animation = &"Jump"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_a6xp8"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_b5mhx")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_w4am6")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_s3esg")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_so5s2")
+blend_point_3/pos = Vector2(0, -1)
+x_label = "Direction"
+y_label = "Y"
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w5t44"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mj4xc"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ow6jg"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eyt5p"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uqdyn"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7qk5t"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_024kp"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_41foo"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uul7c"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h8b7g"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yv6wf"]
+advance_condition = &"is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_68v6a"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2q217"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j3igc"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e0xav"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_45sai"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1hf4b"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kb5rm"]
+states/Attack/node = SubResource("AnimationNodeAnimation_6clt5")
+states/Attack/position = Vector2(436.996, 289)
+states/CrouchIdle/node = SubResource("AnimationNodeAnimation_v6m0m")
+states/CrouchIdle/position = Vector2(333, 35)
+states/Idle/node = SubResource("AnimationNodeAnimation_nbrfe")
+states/Idle/position = Vector2(224, 144)
+states/Jump_Fall/node = SubResource("AnimationNodeBlendSpace1D_iowto")
+states/Jump_Fall/position = Vector2(110, 289)
+"states/Ledge grab/node" = SubResource("AnimationNodeAnimation_1870i")
+"states/Ledge grab/position" = Vector2(110, 379)
+"states/Ledge idle/node" = SubResource("AnimationNodeAnimation_h2epb")
+"states/Ledge idle/position" = Vector2(263, 329)
+states/Run_Jump/node = SubResource("AnimationNodeBlendSpace1D_okbpk")
+states/Run_Jump/position = Vector2(524, 144)
+states/Run_Jump2/node = SubResource("AnimationNodeBlendSpace2D_a6xp8")
+states/Run_Jump2/position = Vector2(822.996, 210)
+states/Start/position = Vector2(84, 144)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_w5t44"), "Idle", "CrouchIdle", SubResource("AnimationNodeStateMachineTransition_mj4xc"), "CrouchIdle", "Idle", SubResource("AnimationNodeStateMachineTransition_ow6jg"), "Ledge grab", "Ledge idle", SubResource("AnimationNodeStateMachineTransition_eyt5p"), "Idle", "Jump_Fall", SubResource("AnimationNodeStateMachineTransition_uqdyn"), "Jump_Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_7qk5t"), "Jump_Fall", "Ledge grab", SubResource("AnimationNodeStateMachineTransition_024kp"), "Ledge idle", "Jump_Fall", SubResource("AnimationNodeStateMachineTransition_41foo"), "CrouchIdle", "Run_Jump", SubResource("AnimationNodeStateMachineTransition_uul7c"), "Run_Jump", "CrouchIdle", SubResource("AnimationNodeStateMachineTransition_h8b7g"), "Run_Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_yv6wf"), "Idle", "Run_Jump", SubResource("AnimationNodeStateMachineTransition_68v6a"), "Run_Jump", "Jump_Fall", SubResource("AnimationNodeStateMachineTransition_2q217"), "Run_Jump", "Attack", SubResource("AnimationNodeStateMachineTransition_j3igc"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_e0xav"), "Jump_Fall", "Run_Jump", SubResource("AnimationNodeStateMachineTransition_45sai"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_1hf4b")]
+graph_offset = Vector2(-150.004, 137)
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_psbm5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ideaa"]
+size = Vector2(36, 42)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_nd7wg")
@@ -227,7 +459,6 @@ script = ExtResource("1_nd7wg")
 scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("2_nf6yh")
 animation = &"Crouch"
-frame = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
@@ -239,10 +470,36 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-8, 7)
+position = Vector2(-8.5, 7)
 shape = SubResource("RectangleShape2D_uhk8l")
 
 [node name="CollisionCrouch" type="CollisionShape2D" parent="."]
 position = Vector2(-12.5, 16.5)
 shape = SubResource("RectangleShape2D_3tynl")
 disabled = true
+
+[node name="CollisionHang" type="CollisionShape2D" parent="."]
+position = Vector2(-13.5, 0.5)
+shape = SubResource("RectangleShape2D_5rcpp")
+disabled = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" parent="UI" instance=ExtResource("3_mlh3f")]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_kb5rm")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_psbm5")
+parameters/conditions/is_on_floor() = false
+parameters/Jump_Fall/blend_position = 0.00236404
+parameters/Run_Jump/blend_position = -0.00236404
+parameters/Run_Jump2/blend_position = Vector2(0, 0)
+
+[node name="CollisionAttack" type="CollisionShape2D" parent="."]
+position = Vector2(25, 6)
+shape = SubResource("RectangleShape2D_ideaa")
+
+[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]

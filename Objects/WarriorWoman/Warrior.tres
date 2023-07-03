@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=39 format=3 uid="uid://dsxkftj054odj"]
+[gd_resource type="SpriteFrames" load_steps=50 format=3 uid="uid://dsxkftj054odj"]
 
 [ext_resource type="Texture2D" uid="uid://b4g32osjneq3m" path="res://Objects/WarriorWoman/Attack/Warrior_Attack_1.png" id="1_hasce"]
 [ext_resource type="Texture2D" uid="uid://bxepvjea0x77f" path="res://Objects/WarriorWoman/Idle Sprites/Warrior_Idle_1.png" id="1_l7j2i"]
@@ -38,6 +38,17 @@
 [ext_resource type="Texture2D" uid="uid://5c4bpgqeoxef" path="res://Objects/WarriorWoman/Crouch/Warrior_Crouch_4.png" id="16_4jjqr"]
 [ext_resource type="Texture2D" uid="uid://fnmveu3i680p" path="res://Objects/WarriorWoman/Crouch/Warrior_Crouch_5.png" id="17_but24"]
 [ext_resource type="Texture2D" uid="uid://by4766ffn8rkw" path="res://Objects/WarriorWoman/Crouch/Warrior_Crouch_6.png" id="18_4ujwi"]
+[ext_resource type="Texture2D" uid="uid://bn2x7dlxaa4xk" path="res://Objects/WarriorWoman/EdgeGrab/Warrior_Edge-Grab_1.png" id="31_n046p"]
+[ext_resource type="Texture2D" uid="uid://b8l7hhtnoywy1" path="res://Objects/WarriorWoman/EdgeGrab/Warrior_Edge-Grab_2.png" id="32_opmjk"]
+[ext_resource type="Texture2D" uid="uid://u0t3smsxa7iu" path="res://Objects/WarriorWoman/EdgeGrab/Warrior_Edge-Grab_3.png" id="33_fqxw1"]
+[ext_resource type="Texture2D" uid="uid://c6p8jbty8bby7" path="res://Objects/WarriorWoman/EdgeGrab/Warrior_Edge-Grab_4.png" id="34_2otp1"]
+[ext_resource type="Texture2D" uid="uid://jdwa2bo31wfd" path="res://Objects/WarriorWoman/EdgeGrab/Warrior_Edge-Grab_5.png" id="35_du33e"]
+[ext_resource type="Texture2D" uid="uid://cgmjy0skmf6k7" path="res://Objects/WarriorWoman/Edge-Idle/Warrior_Edge-Idle_1.png" id="36_htgl7"]
+[ext_resource type="Texture2D" uid="uid://c3ytnn3ilhonn" path="res://Objects/WarriorWoman/Edge-Idle/Warrior_Edge-Idle_2.png" id="37_jy757"]
+[ext_resource type="Texture2D" uid="uid://buba3ykti4fh1" path="res://Objects/WarriorWoman/Edge-Idle/Warrior_Edge-Idle_3.png" id="38_q5a5m"]
+[ext_resource type="Texture2D" uid="uid://nui4k4lqt7nt" path="res://Objects/WarriorWoman/Edge-Idle/Warrior_Edge-Idle_4.png" id="39_p6xwr"]
+[ext_resource type="Texture2D" uid="uid://bsdpfyifvv12x" path="res://Objects/WarriorWoman/Edge-Idle/Warrior_Edge-Idle_5.png" id="40_uj4ph"]
+[ext_resource type="Texture2D" uid="uid://bnsuyeekya1d4" path="res://Objects/WarriorWoman/Edge-Idle/Warrior_Edge-Idle_6.png" id="41_l4yr3"]
 
 [resource]
 animations = [{
@@ -80,7 +91,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack",
-"speed": 5.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -126,7 +137,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -150,6 +161,49 @@ animations = [{
 "loop": true,
 "name": &"Jump",
 "speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("31_n046p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_opmjk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_fqxw1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_2otp1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_du33e")
+}],
+"loop": true,
+"name": &"Ledge Grab",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("36_htgl7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_jy757")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_q5a5m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_p6xwr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_uj4ph")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_l4yr3")
+}],
+"loop": true,
+"name": &"LedgeIdle",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://q38nm6eqa4e8"]
+
+[ext_resource type="PackedScene" uid="uid://djlgcetry201m" path="res://Objects/LedgeTile.tscn" id="1_3p284"]
+
+[node name="Ledge" instance=ExtResource("1_3p284")]
+flip_h = true
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(20, 0)
+
+[node name="HangPoint" parent="." index="2"]
+position = Vector2(20, 25)

@@ -1,6 +1,8 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://1dn4hvgx4vse"]
+[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://1dn4hvgx4vse"]
 
 [ext_resource type="Texture2D" uid="uid://dqwmyn1yebjwr" path="res://Sprites/brick_tiles_1.png" id="1"]
+[ext_resource type="PackedScene" uid="uid://djlgcetry201m" path="res://Objects/LedgeTile.tscn" id="2_x28od"]
+[ext_resource type="PackedScene" uid="uid://q38nm6eqa4e8" path="res://Objects/LedgeTileRight.tscn" id="3_r54ay"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4vh5w"]
 texture = ExtResource("1")
@@ -145,9 +147,15 @@ texture_region_size = Vector2i(32, 32)
 0:0/7/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/7/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_t0s0d"]
+resource_name = "Interactables"
+scenes/1/scene = ExtResource("2_x28od")
+scenes/2/scene = ExtResource("3_r54ay")
+
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_4vh5w")
 sources/1 = SubResource("TileSetAtlasSource_ql2v3")
 sources/2 = SubResource("TileSetAtlasSource_xs2g3")
+sources/4 = SubResource("TileSetScenesCollectionSource_t0s0d")
